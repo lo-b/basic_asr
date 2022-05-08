@@ -9,11 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
-
       - uses: iterative/setup-cml@v1
 
       - uses: iterative/setup-dvc@v1
@@ -22,6 +17,10 @@ jobs:
         with:
           python-version: '3.x'
 
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
 
       - name: cml
         env:
