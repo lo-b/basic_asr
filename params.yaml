@@ -4,4 +4,4 @@ process:
 
 train:
   lr: 0.001
-  epochs: 4
+  epochs: 10

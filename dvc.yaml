@@ -5,6 +5,10 @@ stages:
     deps:
       - data
       - src/train.py
+    params:
+      - process.batch_size
+      - train.lr
+      - train.epochs
     metrics:
       - metrics.json:
           cache: false

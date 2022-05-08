@@ -10,10 +10,15 @@ stages:
     - path: src/train.py
       md5: 07e717919db6187201c814ac7d440cad
       size: 1076
+    params:
+      params.yaml:
+        process.batch_size: 64
+        train.epochs: 10
+        train.lr: 0.001
     outs:
     - path: loss.csv
-      md5: e9565794c9593ff324748aecd0f89e79
-      size: 78
+      md5: 11f037c7f089d28b384503ca22f6c84a
+      size: 195
     - path: metrics.json
-      md5: 5f394ca5bacf5e77c8a6febe411fa27c
+      md5: 67ad5b9efcb852709245bbaab4dbcbea
       size: 32
