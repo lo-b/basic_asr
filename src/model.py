@@ -1,11 +1,12 @@
 from tensorflow.keras import layers, models
+from keras import Sequential
 
 from config import DATASET_PATH
 from data import spectrogram_ds
 from utils import get_commands
 
 
-def get_nn():
+def build_model() -> Sequential:
     for spectrogram, _ in spectrogram_ds.take(1):
         input_shape = spectrogram.shape
 

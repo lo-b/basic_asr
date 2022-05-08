@@ -1,0 +1,13 @@
+---
+stages:
+  train:
+    cmd: python src/train.py
+    deps:
+      - data
+      - src/train.py
+    metrics:
+      - metrics.json:
+          cache: false
+    plots:
+      - loss.csv:
+          cache: false

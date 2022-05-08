@@ -1,11 +1,12 @@
 import os
-import pathlib
 
-import numpy as np
 import tensorflow as tf
+import yaml
 
-from config import AUTOTUNE, BATCH_SIZE, DATASET_PATH
+from config import AUTOTUNE, DATASET_PATH
 from utils import get_commands
+
+params = yaml.safe_load(open("params.yaml"))["process"]
 
 
 def decode_audio(audio_binary):
@@ -92,8 +93,8 @@ train_ds = spectrogram_ds
 val_ds = preprocess_dataset(val_files, commands)
 test_ds = preprocess_dataset(test_files, commands)
 
-train_ds = train_ds.batch(BATCH_SIZE)
-val_ds = val_ds.batch(BATCH_SIZE)
+train_ds = train_ds.batch(params["batch_size"])
+val_ds = val_ds.batch(params["batch_size"])
 
 train_ds = train_ds.cache().prefetch(AUTOTUNE)
 val_ds = val_ds.cache().prefetch(AUTOTUNE)

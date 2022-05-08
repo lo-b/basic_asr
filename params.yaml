@@ -1,0 +1,7 @@
+---
+process:
+  batch_size: 64
+
+train:
+  lr: 0.001
+  epochs: 4

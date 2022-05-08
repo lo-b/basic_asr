@@ -6,5 +6,3 @@ import tensorflow as tf
 # the dataset run `dvc pull`.
 DATASET_PATH = Path().parent.resolve() / Path('data/mini_speech_commands/')
 AUTOTUNE = tf.data.AUTOTUNE
-BATCH_SIZE = 64
-EPOCHS = 10
