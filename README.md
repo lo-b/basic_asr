@@ -13,3 +13,12 @@ commands/words.
 > 2. `pip install "dvc[gs]"`
 
 - [Google Cloud CLI](https://cloud.google.com/sdk/docs/install): used by DVC
+
+## Usage
+
+After cloning the github repo, set your GCP credentials for the DVC remote:
+
+`dvc remote modify --local gcs-storage credentialpath
+'<gcp-service-account-key>'`, where `<gcp-service-account-key>` is the location
+of your service account key that has acces to the Storage Cloud Bucket where
+the training data is stored.
