@@ -35,9 +35,9 @@ jobs:
           # Reproduce pipeline if any changes detected in dependencies
           dvc repro
 
-          # Use DVC metrics diff to compare metrics to master
+          # Use DVC metrics diff to compare metrics to main
           git fetch --prune --unshallow
-          dvc metrics diff --show-md master >> report.md
+          dvc metrics diff --show-md main >> report.md
 
           # Add figure to report
           dvc plots diff --target loss.csv --show-vega master > vega.json
