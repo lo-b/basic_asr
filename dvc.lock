@@ -13,12 +13,12 @@ stages:
     params:
       params.yaml:
         process.batch_size: 64
-        train.epochs: 4
-        train.lr: 0.004
+        train.epochs: 10
+        train.lr: 0.001
     outs:
     - path: loss.csv
-      md5: 0ef8c71d23f6e7a5ae44d7ee3ad319d9
-      size: 80
+      md5: 11f037c7f089d28b384503ca22f6c84a
+      size: 195
     - path: metrics.json
-      md5: 5e8179c3b4b88924e644d7f793d048eb
+      md5: 67ad5b9efcb852709245bbaab4dbcbea
       size: 32
