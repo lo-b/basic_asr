@@ -25,7 +25,7 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-          dvc remote modify --local gcs-storage credentialpath ${{ secret.GOOGLE_APPLICATION_CREDENTIALS }}
+          dvc remote modify --local gcs-storage credentialpath "$GOOGLE_APPLICATION_CREDENTIALS"
 
           # Pull dataset with DVC
           dvc pull data
