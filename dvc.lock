@@ -16,9 +16,9 @@ stages:
         train.epochs: 10
         train.lr: 0.001
     outs:
-    - path: loss.csv
-      md5: d693f0c1acd53df372e20f026ac78d74
-      size: 194
+    - path: matrix.csv
+      md5: e88b7cc5405ce3e621aca7c068ea8dbf
+      size: 6752
     - path: metrics.json
-      md5: 56c7e1a352c92f9044658fff70eaef52
+      md5: 33844552922ca4ef69e360094d078d15
       size: 21

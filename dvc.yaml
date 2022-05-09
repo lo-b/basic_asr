@@ -13,5 +13,5 @@ stages:
       - metrics.json:
           cache: false
     plots:
-      - loss.csv:
+      - matrix.csv:
           cache: false
