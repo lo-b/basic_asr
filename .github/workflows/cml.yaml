@@ -45,7 +45,7 @@ jobs:
           echo "## Plots" >> report.md
           echo "### Class confusions" >> report.md
           dvc plots diff \
-            --target classes.csv \
+            --target matrix.csv \
             --template confusion \
             -x actual \
             -y predicted \
