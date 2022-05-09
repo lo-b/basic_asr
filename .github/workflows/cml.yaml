@@ -41,15 +41,15 @@ jobs:
           echo "## Metrics" >> report.md
           dvc metrics diff --show-md main >> report.md
 
-          # Publish confusion matrix diff
-          echo "## Plots" >> report.md
-          echo "### Class confusions" >> report.md
-          dvc plots diff \
-            --target matrix.csv \
-            --template confusion \
-            -x actual \
-            -y predicted \
-            --show-vega main > vega.json
-          vl2png vega.json -s 1.5 | cml publish --md >> report.md
+          # # Publish confusion matrix diff
+          # echo "## Plots" >> report.md
+          # echo "### Class confusions" >> report.md
+          # dvc plots diff \
+          #   --target matrix.csv \
+          #   --template confusion \
+          #   -x actual \
+          #   -y predicted \
+          #   --show-vega main > vega.json
+          # vl2png vega.json -s 1.5 | cml publish --md >> report.md
 
           cml-send-comment report.md
