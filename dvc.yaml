@@ -14,4 +14,4 @@ stages:
           cache: false
     plots:
       - matrix.csv:
-          cache: false
+          cache: true

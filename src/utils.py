@@ -1,7 +1,10 @@
 from typing import Any
+
+import matplotlib.pyplot as plt
 import numpy as np
-import tensorflow as tf
 import pandas as pd
+import seaborn as sns
+import tensorflow as tf
 
 
 def get_commands(data_dir):
@@ -19,7 +22,7 @@ def get_commands(data_dir):
     return commands
 
 
-def save_as_matrix_csv(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
+def save_matrix_as_csv(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
                        commands: list[str]) -> None:
     """save_as_matrix_csv.
 
@@ -45,3 +48,17 @@ def save_as_matrix_csv(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
     df = pd.DataFrame({"actual": actual, "predicted": predicted})
 
     df.to_csv("matrix.csv", index=False)
+
+
+def save_matrix_as_png(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
+                       commands: list[str]):
+    confusion_mtx = tf.math.confusion_matrix(actual, predicted)
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(confusion_mtx,
+                xticklabels=commands,
+                yticklabels=commands,
+                annot=True,
+                fmt='g')
+    plt.xlabel('Prediction')
+    plt.ylabel('Label')
+    plt.savefig("out.png")
