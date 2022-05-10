@@ -1,3 +1,5 @@
+[![Model training CI](https://github.com/lo-b/basic_asr/actions/workflows/cml.yaml/badge.svg)](https://github.com/lo-b/basic_asr/actions/workflows/cml.yaml)
+
 # Basic ASR | FHICT AI For Society Minor
 
 This is a basic automatic speech recognition (ASR) model able to recognize 8
