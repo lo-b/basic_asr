@@ -4,12 +4,12 @@ stages:
     cmd: python src/train.py
     deps:
     - path: data
-      md5: 07b0578d77b2951586de3012dc94603d.dir
-      size: 252180267
-      nfiles: 8001
+      md5: 3fa097935802d10d87c7d779c43b514b.dir
+      size: 5053601
+      nfiles: 161
     - path: src/train.py
-      md5: b9289bcc4d9496e61bb8a62a9d391efa
-      size: 1649
+      md5: 67074cb5c71d3ae5c66a140a141140ec
+      size: 1566
     params:
       params.yaml:
         process.batch_size: 64
