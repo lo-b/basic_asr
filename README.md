@@ -1,4 +1,5 @@
 [![Model training CI](https://github.com/lo-b/basic_asr/actions/workflows/cml.yaml/badge.svg)](https://github.com/lo-b/basic_asr/actions/workflows/cml.yaml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lo-b_basic_asr&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=lo-b_basic_asr)
 
 # Basic ASR | FHICT AI For Society Minor
 
