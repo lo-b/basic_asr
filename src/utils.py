@@ -62,3 +62,10 @@ def save_matrix_as_png(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
     plt.xlabel('Prediction')
     plt.ylabel('Label')
     plt.savefig("out.png")
+
+
+def save_plots_as_csv(metrics):
+    pd.DataFrame(data=metrics["loss"], columns=["loss"]).to_csv('loss.csv',
+                                                                index=False)
+    pd.DataFrame(data=metrics["val_loss"],
+                 columns=["val_loss"]).to_csv('val_loss.csv', index=False)
