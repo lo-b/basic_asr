@@ -1,4 +1,5 @@
 import os
+from typing import Iterable
 
 import tensorflow as tf
 import yaml
@@ -6,6 +7,7 @@ import yaml
 from config import AUTOTUNE, DATASET_PATH
 from utils import get_commands
 
+Ratios = Iterable[tuple[float, float, float]]
 params = yaml.safe_load(open("params.yaml"))["process"]
 
 
@@ -72,29 +74,45 @@ def preprocess_dataset(files, commands):
     return output_ds
 
 
-filenames = tf.io.gfile.glob(str(DATASET_PATH / "*/*"))
-filenames = tf.random.shuffle(filenames)
-commands = get_commands(DATASET_PATH)
+def get_datasets(ratios: Ratios = (.8, .1, .1)):
+    filenames = tf.io.gfile.glob(str(DATASET_PATH / "*/*"))
+    filenames = tf.random.shuffle(filenames)
+    print("amount of files ==> ", len(filenames))
+    commands = get_commands(DATASET_PATH)
 
-train_files = filenames[:6400]
-val_files = filenames[6400:6400 + 800]
-test_files = filenames[-800:]
+    assert sum(ratios) == 1
 
-files_ds = tf.data.Dataset.from_tensor_slices(train_files)
-waveform_ds = files_ds.map(map_func=get_waveform_and_label,
-                           num_parallel_calls=AUTOTUNE)
+    train_len = int(len(filenames) * ratios[0])
+    val_len = int(len(filenames) * ratios[1])
+    test_len = int(len(filenames) * ratios[2])
+    print(train_len, val_len, test_len)
 
-spectrogram_ds = waveform_ds.map(
-    map_func=lambda audio, label: get_spectrogram_and_label_id(
-        audio, label, commands),
-    num_parallel_calls=AUTOTUNE)
+    train_files = filenames[:train_len]
+    val_files = filenames[train_len:train_len + val_len]
+    test_files = filenames[-test_len:]
 
-train_ds = spectrogram_ds
-val_ds = preprocess_dataset(val_files, commands)
-test_ds = preprocess_dataset(test_files, commands)
+    # assert that after split all samples are used and subsets count up to the
+    # length of the amount of files
+    assert (len(train_files) + len(val_files) +
+            len(test_files)) == len(filenames)
 
-train_ds = train_ds.batch(params["batch_size"])
-val_ds = val_ds.batch(params["batch_size"])
+    files_ds = tf.data.Dataset.from_tensor_slices(train_files)
+    waveform_ds = files_ds.map(map_func=get_waveform_and_label,
+                               num_parallel_calls=AUTOTUNE)
 
-train_ds = train_ds.cache().prefetch(AUTOTUNE)
-val_ds = val_ds.cache().prefetch(AUTOTUNE)
+    spectrogram_ds = waveform_ds.map(
+        map_func=lambda audio, label: get_spectrogram_and_label_id(
+            audio, label, commands),
+        num_parallel_calls=AUTOTUNE)
+
+    train_ds = spectrogram_ds
+    val_ds = preprocess_dataset(val_files, commands)
+    test_ds = preprocess_dataset(test_files, commands)
+
+    train_ds = train_ds.batch(params["batch_size"])
+    val_ds = val_ds.batch(params["batch_size"])
+
+    train_ds = train_ds.cache().prefetch(AUTOTUNE)
+    val_ds = val_ds.cache().prefetch(AUTOTUNE)
+
+    return train_ds, val_ds, test_ds, spectrogram_ds

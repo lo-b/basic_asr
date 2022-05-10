@@ -1,16 +1,12 @@
 from tensorflow.keras import layers, models
 from keras import Sequential
 
-from config import DATASET_PATH
-from data import spectrogram_ds
-from utils import get_commands
 
-
-def build_model() -> Sequential:
+def build_model(spectrogram_ds, commands) -> Sequential:
     for spectrogram, _ in spectrogram_ds.take(1):
         input_shape = spectrogram.shape
 
-    num_labels = len(get_commands(DATASET_PATH))
+    num_labels = len(commands)
 
     # Instantiate the `tf.keras.layers.Normalization` layer.
     norm_layer = layers.Normalization()
