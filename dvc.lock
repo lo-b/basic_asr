@@ -4,12 +4,12 @@ stages:
     cmd: python src/train.py
     deps:
     - path: data
-      md5: 07b0578d77b2951586de3012dc94603d.dir
-      size: 252180267
-      nfiles: 8001
+      md5: 9705290936bbfee99c30a8158c1cafe9.dir
+      size: 5071775
+      nfiles: 161
     - path: src/train.py
-      md5: b9289bcc4d9496e61bb8a62a9d391efa
-      size: 1649
+      md5: 67074cb5c71d3ae5c66a140a141140ec
+      size: 1566
     params:
       params.yaml:
         process.batch_size: 64
@@ -17,8 +17,8 @@ stages:
         train.lr: 0.001
     outs:
     - path: matrix.csv
-      md5: 34978e666fa356b11f65d3192c47caa1
-      size: 6868
+      md5: 32001d5172211a1aedb3a03a45859f76
+      size: 6867
     - path: metrics.json
-      md5: af57df6f9a67264ea1a8721c56da6780
+      md5: d62b46d9f21ed19f81ca28d368628f5f
       size: 21
