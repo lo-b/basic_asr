@@ -4,9 +4,9 @@ stages:
     cmd: python src/train.py
     deps:
     - path: data
-      md5: 9705290936bbfee99c30a8158c1cafe9.dir
-      size: 5071775
-      nfiles: 161
+      md5: 07b0578d77b2951586de3012dc94603d.dir
+      size: 252180267
+      nfiles: 8001
     - path: src/train.py
       md5: 77e6c79caad828f75c90617ace6ff606
       size: 1450
@@ -17,14 +17,14 @@ stages:
         train.lr: 0.004
     outs:
     - path: loss.csv
-      md5: 6f73fd0db5efaa0211e60090cbf7f3fa
-      size: 79
+      md5: 88b7069f0bd96f97695a0df518e2ad44
+      size: 194
     - path: matrix.csv
-      md5: 4e93132f20a2138233f111351b805abb
-      size: 157
+      md5: f00215390aad3ae3543250d3376b97ef
+      size: 6796
     - path: metrics.json
-      md5: 61a12072c65dbea3a2ff1ddd84f9b06b
-      size: 20
+      md5: 7b4e03f292ff25c5d0eabac2fb31bea9
+      size: 21
     - path: val_loss.csv
-      md5: f61ffb5c65237a180ffeca6a4fc2bbec
-      size: 84
+      md5: d9ea3062ea30d5c68704a0772b1b8255
+      size: 198
