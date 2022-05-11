@@ -27,6 +27,9 @@ history = model.fit(train_ds,
                                                          patience=2),
                     ])
 
+# save only weights of the model since we know the architecture
+model.save('model_weights.h5')
+
 test_audio = []
 test_labels = []
 

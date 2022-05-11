@@ -277,3 +277,4 @@ tags
 /data
 basic-asr-*.json
 /matrix.csv
+/model_weights.h5
