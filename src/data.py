@@ -77,7 +77,6 @@ def preprocess_dataset(files, commands):
 def get_datasets(ratios: Ratios = (.8, .1, .1)):
     filenames = tf.io.gfile.glob(str(DATASET_PATH / "*/*"))
     filenames = tf.random.shuffle(filenames)
-    print("amount of files ==> ", len(filenames))
     commands = get_commands(DATASET_PATH)
 
     assert sum(ratios) == 1
@@ -85,7 +84,6 @@ def get_datasets(ratios: Ratios = (.8, .1, .1)):
     train_len = int(len(filenames) * ratios[0])
     val_len = int(len(filenames) * ratios[1])
     test_len = int(len(filenames) * ratios[2])
-    print(train_len, val_len, test_len)
 
     train_files = filenames[:train_len]
     val_files = filenames[train_len:train_len + val_len]
