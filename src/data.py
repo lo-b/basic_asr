@@ -75,10 +75,28 @@ def preprocess_dataset(files, commands):
 
 
 def get_datasets(ratios: Ratios = (.8, .1, .1)):
+    """
+    Preprocess and return train, validation (development), test and spectrogram
+    sets. In particular this method:
+      - reads in labels from directories
+      - reads in waveforms and transform them to spectrograms
+      - splits dataset into train, val & test
+
+    Spectrogram dataset is equivalent to the train set but it is unbatched and
+    not prefetched; returned to adapt normalization layer.
+
+
+    Args:
+    ratios (Ratios): ratios of split, defaults to (.8, .1, .1) meaning 80% of
+    the data will be in the training set, 10% in the validation set and 10% in
+    the test set.
+    """
+
     filenames = tf.io.gfile.glob(str(DATASET_PATH / "*/*"))
     filenames = tf.random.shuffle(filenames)
     commands = get_commands(DATASET_PATH)
 
+    # ratios should add up to exactly 1
     assert sum(ratios) == 1
 
     train_len = int(len(filenames) * ratios[0])

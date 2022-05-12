@@ -12,7 +12,8 @@ stages:
       - metrics.json:
           cache: false
     outs:
-      - model_weights.h5
+      - model/:
+          cache: false
     plots:
       - loss.csv:
           cache: false

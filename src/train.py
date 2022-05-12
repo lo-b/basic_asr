@@ -29,8 +29,8 @@ history = model.fit(train_ds,
                                                          patience=2),
                     ])
 
-# save only weights of the model since we know the architecture
-model.save('model_weights.h5')
+# Save entire model
+model.save('model')
 
 test_audio = []
 test_labels = []
@@ -55,8 +55,18 @@ report = classification_report(y_true, y_pred, output_dict=True)
 with open("metrics.json", 'w') as outfile:
     json.dump(
         {
-            "accuracy": test_acc,
-            "f1:": report["weighted avg"]["precision"],
-            "recall:": report["weighted avg"]["precision"],
-            "precision:": report["weighted avg"]["f1-score"],
+            "train_loss": metrics["loss"][0],
+            "train_accuracy": metrics["accuracy"][0],
+            "train_f1": metrics["f1_m"][0],
+            "train_precision": metrics["precision_m"][0],
+            "train_recall": metrics["recall_m"][0],
+            "val_loss": metrics["val_loss"][0],
+            "val_accuracy": metrics["val_accuracy"][0],
+            "val_f1": metrics["val_f1_m"][0],
+            "val_precision": metrics["val_precision_m"][0],
+            "val_recall": metrics["val_recall_m"][0],
+            "test_accuracy": test_acc,
+            "test_f1:": report["weighted avg"]["precision"],
+            "test_precision:": report["weighted avg"]["f1-score"],
+            "test_recall:": report["weighted avg"]["precision"],
         }, outfile)
