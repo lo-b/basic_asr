@@ -1,0 +1,5 @@
+outs:
+- md5: fbe11a83c913bbc09022bcea8fac596d.dir
+  size: 531573
+  nfiles: 41
+  path: custom_data

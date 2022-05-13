@@ -274,7 +274,11 @@ tags
 [._]*.un~
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,vim,python
-/data
+# Manual ignores
 basic-asr-*.json
+
+# Added dvc ignores below
+/data
 /matrix.csv
 /model_weights.h5
+/custom_data
