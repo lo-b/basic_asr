@@ -4,14 +4,14 @@ import numpy as np
 import tensorflow as tf
 import yaml
 
-from config import DATASET_PATH
+from config import DATASET_PATH, ROOT_DIR
 from data import get_datasets
 from model import build_model
 from utils import get_commands, save_matrix_as_csv, save_plots_as_csv
 from custom_metrics import f1_m, precision_m, recall_m
 from sklearn.metrics import classification_report
 
-params = yaml.safe_load(open("params.yaml"))["train"]
+params = yaml.safe_load(open(ROOT_DIR / "params.yaml"))["train"]
 train_ds, val_ds, test_ds, spectrogram_ds = get_datasets()
 commands = get_commands(DATASET_PATH)
 model = build_model(spectrogram_ds, commands)
@@ -55,16 +55,16 @@ report = classification_report(y_true, y_pred, output_dict=True)
 with open("metrics.json", 'w') as outfile:
     json.dump(
         {
-            "train_loss": metrics["loss"][0],
-            "train_accuracy": metrics["accuracy"][0],
-            "train_f1": metrics["f1_m"][0],
-            "train_precision": metrics["precision_m"][0],
-            "train_recall": metrics["recall_m"][0],
-            "val_loss": metrics["val_loss"][0],
-            "val_accuracy": metrics["val_accuracy"][0],
-            "val_f1": metrics["val_f1_m"][0],
-            "val_precision": metrics["val_precision_m"][0],
-            "val_recall": metrics["val_recall_m"][0],
+            "train_loss": metrics["loss"][-1],
+            "train_accuracy": metrics["accuracy"][-1],
+            "train_f1": metrics["f1_m"][-1],
+            "train_precision": metrics["precision_m"][-1],
+            "train_recall": metrics["recall_m"][-1],
+            "val_loss": metrics["val_loss"][-1],
+            "val_accuracy": metrics["val_accuracy"][-1],
+            "val_f1": metrics["val_f1_m"][-1],
+            "val_precision": metrics["val_precision_m"][-1],
+            "val_recall": metrics["val_recall_m"][-1],
             "test_accuracy": test_acc,
             "test_f1:": report["weighted avg"]["precision"],
             "test_precision:": report["weighted avg"]["f1-score"],

@@ -4,11 +4,11 @@ from typing import Iterable
 import tensorflow as tf
 import yaml
 
-from config import AUTOTUNE, DATASET_PATH
+from config import AUTOTUNE, DATASET_PATH, ROOT_DIR
 from utils import get_commands
 
 Ratios = Iterable[tuple[float, float, float]]
-params = yaml.safe_load(open("params.yaml"))["process"]
+params = yaml.safe_load(open(ROOT_DIR / "params.yaml"))["process"]
 
 
 def decode_audio(audio_binary):
