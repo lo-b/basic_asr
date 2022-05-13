@@ -8,8 +8,8 @@ stages:
       size: 252180267
       nfiles: 8001
     - path: src/train.py
-      md5: c13d19f6b3cce9f1b92d1b25319aa57d
-      size: 2469
+      md5: a434477555ac9302f0a48395d88d72af
+      size: 2497
     params:
       params.yaml:
         process.batch_size: 64
