@@ -53,20 +53,21 @@ test_acc = sum(y_pred == y_true) / len(y_true)
 report = classification_report(y_true, y_pred, output_dict=True)
 
 with open("metrics.json", 'w') as outfile:
+    weighted_avg = "weighted avg"
     json.dump(
         {
-            "train_loss": metrics["loss"][-1],
             "train_accuracy": metrics["accuracy"][-1],
-            "train_f1": metrics["f1_m"][-1],
-            "train_precision": metrics["precision_m"][-1],
-            "train_recall": metrics["recall_m"][-1],
-            "val_loss": metrics["val_loss"][-1],
             "val_accuracy": metrics["val_accuracy"][-1],
-            "val_f1": metrics["val_f1_m"][-1],
-            "val_precision": metrics["val_precision_m"][-1],
-            "val_recall": metrics["val_recall_m"][-1],
             "test_accuracy": test_acc,
-            "test_f1:": report["weighted avg"]["precision"],
-            "test_precision:": report["weighted avg"]["f1-score"],
-            "test_recall:": report["weighted avg"]["precision"],
+            "train_loss": metrics["loss"][-1],
+            "val_loss": metrics["val_loss"][-1],
+            "train_f1": metrics["f1_m"][-1],
+            "val_f1": metrics["val_f1_m"][-1],
+            "test_f1:": report[weighted_avg]["precision"],
+            "train_precision": metrics["precision_m"][-1],
+            "val_precision": metrics["val_precision_m"][-1],
+            "test_precision:": report[weighted_avg]["f1-score"],
+            "train_recall": metrics["recall_m"][-1],
+            "val_recall": metrics["val_recall_m"][-1],
+            "test_recall:": report[weighted_avg]["precision"],
         }, outfile)

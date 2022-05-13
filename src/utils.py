@@ -79,18 +79,19 @@ class TTSCommandGenerator:
     manual testing.
     """
 
-    def __init__(
-        self,
-        service="Polly",
-        host="https://lazypy.ro/",
-        speakers=[
-            "Brian", "Amy", "Emma", "Geraint", "Russel", "Nicole", "Joey",
-            "Justin", "Matthew", "Ivy", "Joanna", "Kendra", "Kimberly", "Salli"
-        ]
-    ) -> None:
+    def __init__(self,
+                 service="Polly",
+                 host="https://lazypy.ro/",
+                 speakers=None) -> None:
         self.service = service
         self.host = host
-        self.speakers = speakers
+
+        if speakers is None:
+            self.speakers = [
+                "Brian", "Amy", "Emma", "Geraint", "Russel", "Nicole", "Joey",
+                "Justin", "Matthew", "Ivy", "Joanna", "Kendra", "Kimberly",
+                "Salli"
+            ]
 
     def generate_tts(self, command, path):
         """generate_tts.
