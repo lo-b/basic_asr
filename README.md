@@ -8,6 +8,9 @@ commands/words.
 
 ## Requirements
 
+If you wish to run experiments, training the model, you will need the following
+dependencies.
+
 - [Data Version Control](https://dvc.org/doc/install) (DVC): used for MLOps
   practices
 > 💡 Make sure DVC (1) is installed, together with the Google Cloud Storage (GCS) driver
@@ -16,12 +19,51 @@ commands/words.
 > 2. `pip install "dvc[gs]"`
 
 - [Google Cloud CLI](https://cloud.google.com/sdk/docs/install): used by DVC
+- Jupyter notebook (for manual evaluation)
 
 ## Usage
 
-After cloning the github repo, set your GCP credentials for the DVC remote:
+### Running new experiments locally
 
-`dvc remote modify --local gcs-storage credentialpath
-'<gcp-service-account-key>'`, where `<gcp-service-account-key>` is the location
-of your service account key that has acces to the Storage Cloud Bucket where
-the training data is stored.
+1. Run `dvc pull` to get the training data and custom data (used for manual
+evaluation).
+2. Edit source code e.g. the `params.yaml` file or `model.py`.
+3. Run `dvc exp run` to run a new experiment.
+4. Run `dvc exp diff` to see the difference of your experiment, compared to the
+   main branch.
+
+
+### Manually evaluating model performance
+
+#### With custom data using DVC
+
+If you wish to manually test the model, without your own data,  run `dvc pull
+custom_data` to get the data. Start a jupyter notebook server and run the
+`./src/manual_evaluation.sync.ipynb` notebook.
+
+#### Own Data
+To manually test the model with your own data, load in your own speech which
+are `.wav` files with similar specs as the data it was trained on:
+```
+Format                                   : Wave
+File size                                : 31.3 KiB
+Duration                                 : 1 s 0 ms
+Overall bit rate mode                    : Constant
+Overall bit rate                         : 256 kb/s
+
+Audio
+Format                                   : PCM
+Format settings                          : Little / Signed
+Codec ID                                 : 1
+Duration                                 : 1 s 0 ms
+Bit rate mode                            : Constant
+Bit rate                                 : 256 kb/s
+Channel(s)                               : 1 channel
+Sampling rate                            : 16.0 kHz
+Bit depth                                : 16 bits
+Stream size                              : 31.2 KiB (100%)
+```
+
+Check out the [manual evaluation notebook](./src/manual_evaluation.sync.ipynb)
+on how to load in the model and make new predictions.
+
