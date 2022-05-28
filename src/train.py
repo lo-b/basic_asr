@@ -21,13 +21,7 @@ model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=['accuracy', f1_m, precision_m, recall_m])
 
-history = model.fit(train_ds,
-                    validation_data=val_ds,
-                    epochs=params["epochs"],
-                    callbacks=[
-                        tf.keras.callbacks.EarlyStopping(verbose=1,
-                                                         patience=2),
-                    ])
+history = model.fit(train_ds, validation_data=val_ds, epochs=params["epochs"])
 
 # Save entire model
 model.save('model')
