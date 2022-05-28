@@ -20,30 +20,30 @@ stages:
       md5: 652d12c73b183517aa9ce15ea56f7cd6
       size: 1013
     - path: src/train.py
-      md5: a434477555ac9302f0a48395d88d72af
-      size: 2497
+      md5: a8d7948fad45b86fefc47d7dc40b752f
+      size: 2264
     - path: src/utils.py
       md5: b1467b18379b984338b50826a15fe92f
       size: 3502
     params:
       params.yaml:
-        process.batch_size: 64
-        train.epochs: 10
-        train.lr: 0.001
+        process.batch_size: 32
+        train.epochs: 50
+        train.lr: 0.004
     outs:
     - path: loss.csv
-      md5: d96f452e94727b769b9ed789bbb50cb1
-      size: 197
+      md5: 310d0ced16946803a3abc10f09e20ae8
+      size: 976
     - path: matrix.csv
-      md5: 474ed6c9cb0a8b7f0634d368c8b3a481
-      size: 6576
+      md5: 11ff604d58bab3dd96d29fca6ffffb8c
+      size: 6763
     - path: metrics.json
-      md5: 56d6990d28dc1bb2da98c8935ddb4952
-      size: 482
+      md5: 4051daaad15079c4331df2b3e631806d
+      size: 474
     - path: model/
-      md5: cece4386d320b4ba8c22ac75a0cc7d35.dir
-      size: 19709218
+      md5: e0ea64558f8ae73d44eeb41a45006199.dir
+      size: 19709217
       nfiles: 4
     - path: val_loss.csv
-      md5: d6707d7bee8cd1bd4ee2bdf5e4f83824
-      size: 198
+      md5: b18b212dbe1db9f92ee015a0b5a24629
+      size: 958
