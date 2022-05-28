@@ -3,5 +3,5 @@ process:
   batch_size: 32
 
 train:
-  lr: 0.004
-  epochs: 50
+  lr: 0.001
+  epochs: 30

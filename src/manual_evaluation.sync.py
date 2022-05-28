@@ -41,7 +41,7 @@ trained_model.summary()
 # <h2>Load in self spoken sample and use model make prediction</h2>
 
 # %%
-sample_file = '../custom_data/commands/no/no_Joey.wav'
+sample_file = '../custom_data/commands/left/left_Salli.wav'
 
 sample_ds = preprocess_dataset([str(sample_file)], commands)
 

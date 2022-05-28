@@ -8,25 +8,20 @@ def build_model(spectrogram_ds, commands) -> Sequential:
 
     num_labels = len(commands)
 
-    # Instantiate the `tf.keras.layers.Normalization` layer.
-    norm_layer = layers.Normalization()
-    # Fit the state of the layer to the spectrograms
-    # with `Normalization.adapt`.
-    norm_layer.adapt(data=spectrogram_ds.map(
-        map_func=lambda spec, label: spec))
-
     return models.Sequential([
         layers.Input(shape=input_shape),
         # Downsample the input.
-        layers.Resizing(32, 32),
+        layers.Resizing(64, 64),
         # Normalize.
-        norm_layer,
         layers.Conv2D(32, 3, activation='relu'),
+        layers.BatchNormalization(),
         layers.Conv2D(64, 3, activation='relu'),
+        layers.BatchNormalization(),
         layers.MaxPooling2D(),
         layers.Dropout(0.25),
         layers.Flatten(),
         layers.Dense(128, activation='relu'),
+        layers.BatchNormalization(),
         layers.Dropout(0.5),
         layers.Dense(num_labels),
     ])
