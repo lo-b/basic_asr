@@ -4,6 +4,11 @@ stages:
     deps:
       - data
       - src/train.py
+      - src/model.py
+      - src/utils.py
+      - src/data.py
+      - src/config.py
+      - src/custom_metrics.py
     params:
       - process.batch_size
       - train.lr

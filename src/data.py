@@ -1,5 +1,5 @@
 import os
-from typing import Iterable
+from typing import Iterable, Tuple
 
 import tensorflow as tf
 import yaml
@@ -7,7 +7,7 @@ import yaml
 from config import AUTOTUNE, DATASET_PATH, ROOT_DIR
 from utils import get_commands
 
-Ratios = Iterable[tuple[float, float, float]]
+Ratios = Iterable[Tuple[float, float, float]]
 params = yaml.safe_load(open(ROOT_DIR / "params.yaml"))["process"]
 
 

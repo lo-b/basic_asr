@@ -1,5 +1,5 @@
 import json
-from typing import Any
+from typing import Any, List
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -25,7 +25,7 @@ def get_commands(data_dir):
 
 
 def save_matrix_as_csv(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
-                       commands: list[str]) -> None:
+                       commands: List[str]) -> None:
     """save_as_matrix_csv.
 
     Helper function to save a confusion matrix to be used by CML + DVC in an
@@ -53,7 +53,7 @@ def save_matrix_as_csv(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
 
 
 def save_matrix_as_png(actual: 'np.ndarray[Any]', predicted: 'np.ndarray[Any]',
-                       commands: list[str]):
+                       commands: List[str]):
     confusion_mtx = tf.math.confusion_matrix(actual, predicted)
     plt.figure(figsize=(10, 8))
     sns.heatmap(confusion_mtx,
